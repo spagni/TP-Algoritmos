@@ -1,6 +1,7 @@
 package ar.edu.davinci.algoritmos.nb.tp.grupo1;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Generala {
 
@@ -14,8 +15,7 @@ public class Generala {
 		//Inicializo juego
 		Juego juego = new Juego();
 		//Ingreso jugadores
-		juego.ingresoJugadores(sc);
-		
+		ArrayList<Jugadores> jugadores = juego.ingresoJugadores(sc);
 				
 		sc.close();
 	}
