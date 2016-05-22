@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Juego {
 	public int modoJuego;
 	public int cantJugadores;
+	public int contTurnos;
 	
 	public ArrayList<Jugadores> ingresoJugadores(Scanner sc){
 		//Defino la lista de jugadores
@@ -44,7 +45,7 @@ public class Juego {
 	public ArrayList<Jugadores> creoJugadores(Scanner sc){
 		System.out.print("Ingrese cantidad de jugadores: ");
 		cantJugadores = sc.nextInt();
-		//Creo un vector del tipo Jugadores, que tiene todos los jugadores adentro
+		//Creo una lista del tipo Jugadores, que tiene todos los jugadores adentro
 		ArrayList<Jugadores> jugadoresList = new ArrayList<Jugadores>();
 		for (int i = 0; i < cantJugadores; i++) {
 			Jugadores jug = new Jugadores(i,sc);

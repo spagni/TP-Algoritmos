@@ -20,4 +20,5 @@ public class Jugadores {
 	public String nombreJugador;
 	public int totalPuntos;
 	public boolean esCpu;
+	//Definir todos los puntajes
 }
