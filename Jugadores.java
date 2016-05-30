@@ -1,7 +1,6 @@
 package ar.edu.davinci.algoritmos.nb.tp.grupo1;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Jugadores {
 	

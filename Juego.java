@@ -4,9 +4,40 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Juego {
-	public int modoJuego;
-	public int cantJugadores;
-	public int contTurnos;
+	private int modoJuego;
+	private int cantJugadores;
+	private int contTurnos = 1;
+	private boolean hayGanador = false;
+	private int contTiros = 1;
+	private boolean sigueTirando = true;
+	
+	public void jugar(){
+		Scanner sc = new Scanner(System.in);
+		
+		//Inicializo los jugadores
+		ArrayList<Jugadores> jugadores = this.ingresoJugadores(sc);
+		
+		//Arranca el juego
+		while(!hayGanador && contTurnos <= 11){
+			System.out.println("Turno Nª" + contTurnos);
+			
+			//Recorro todos los jugadores
+			for (Jugadores jugador : jugadores){
+				System.out.println("Juega " + jugador.nombreJugador + "...");
+				//Me fijo si juega la cpu o un jugador
+				if(jugador.esCpu = false){
+					//Juega jugador
+				}
+				else{
+					//Juega Cpu
+				}
+			}
+			//Recorri todos los jugadores, sumo un turno
+			contTurnos ++;
+		}
+		System.out.println("FIN");
+		sc.close();
+	}
 	
 	public ArrayList<Jugadores> ingresoJugadores(Scanner sc){
 		//Defino la lista de jugadores
@@ -58,6 +89,11 @@ public class Juego {
 		System.out.println("Los jugadores son: ");
 		for(int i = 0;i<array.size();i++){
 	           System.out.println(" - " + array.get(i).nombreJugador +" - "+ array.get(i).esCpu);
+		}
+	}
+	public void juegaJugador(Jugadores jugador){
+		while(sigueTirando && contTiros <= 3){
+			//Tirar dados
 		}
 	}
 }
