@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Juego {
+	
 	private int modoJuego;
 	private int cantJugadores;
 	private int contTurnos = 1;
@@ -14,19 +15,23 @@ public class Juego {
 	public void jugar(){
 		Scanner sc = new Scanner(System.in);
 		
-		//Inicializo los jugadores
+		//Inicializo y cargo las listas de jugadores y Dados 
 		ArrayList<Jugadores> jugadores = this.ingresoJugadores(sc);
+		ArrayList<Dados> dados = this.cargarDados();
 		
 		//Arranca el juego
 		while(!hayGanador && contTurnos <= 11){
-			System.out.println("Turno Nª" + contTurnos);
+			System.out.println("Turno NÂ°" + contTurnos);
+			System.out.println();
 			
 			//Recorro todos los jugadores
 			for (Jugadores jugador : jugadores){
-				System.out.println("Juega " + jugador.nombreJugador + "...");
+				System.out.println("Juega " + jugador.getNombreJugador() + "..." + jugador.getEsCpu());
+				System.out.println();
 				//Me fijo si juega la cpu o un jugador
-				if(jugador.esCpu = false){
+				if(jugador.getEsCpu() == false){
 					//Juega jugador
+					this.juegaJugador(jugador, dados);
 				}
 				else{
 					//Juega Cpu
@@ -76,6 +81,7 @@ public class Juego {
 	public ArrayList<Jugadores> creoJugadores(Scanner sc){
 		System.out.print("Ingrese cantidad de jugadores: ");
 		cantJugadores = sc.nextInt();
+		System.out.println();
 		//Creo una lista del tipo Jugadores, que tiene todos los jugadores adentro
 		ArrayList<Jugadores> jugadoresList = new ArrayList<Jugadores>();
 		for (int i = 0; i < cantJugadores; i++) {
@@ -85,15 +91,72 @@ public class Juego {
 		return jugadoresList;
 	}
 	
+	public ArrayList<Dados> cargarDados(){
+		ArrayList<Dados> dadosList = new ArrayList<Dados>();
+		for (int i = 0; i < 5; i++) {//Itero 5 veces porque son 5 dados
+			Dados dado = new Dados();
+			dadosList.add(dado);
+		}
+		return dadosList;
+	}
+	
 	public void imprimirArray(ArrayList<Jugadores> array){
 		System.out.println("Los jugadores son: ");
 		for(int i = 0;i<array.size();i++){
-	           System.out.println(" - " + array.get(i).nombreJugador +" - "+ array.get(i).esCpu);
+	           System.out.println(" - " + array.get(i).getNombreJugador() +" - "+ array.get(i).getEsCpu());
 		}
 	}
-	public void juegaJugador(Jugadores jugador){
-		while(sigueTirando && contTiros <= 3){
+	
+	public void juegaJugador(Jugadores jugador, ArrayList<Dados> dados){
+		//Ciclo para que juegue dentro de los tres turnos, o hasta que no quiera tirar mas
+		while(this.sigueTirando && this.contTiros <= 3){
 			//Tirar dados
+			if(this.contTiros == 1){
+				System.out.println("-->Tiro " + this.contTiros);
+				this.tirarDados(dados, true, true, true, true, true);
+				this.imprimirDados(dados);
+				this.contTiros++;
+				
+				//Preguntar si quiere seguir tirando
+			}
+			else{
+				System.out.println("-->Tiro " + this.contTiros);
+				this.contTiros++;
+				//Preguntar si quiere seguir tirando
+			}
 		}
+		this.contTiros = 1;//Reinicio el contador de tiros al tiro 1
+		this.imprimirSeparador();
+	}
+	
+	public void imprimirSeparador(){
+		System.out.println("\n-----------------\n");
+	}
+	
+	public void tirarDados(ArrayList<Dados> dados, boolean d1 ,boolean d2, boolean d3, boolean d4, boolean d5){
+		//Chequeo los dados uno por uno y si estan en true los tiro
+		if(d1){
+			dados.get(0).tirar();
+		}
+		if(d2){
+			dados.get(1).tirar();
+		}
+		if(d3){
+			dados.get(2).tirar();
+		}
+		if(d4){
+			dados.get(3).tirar();
+		}
+		if(d5){
+			dados.get(4).tirar();
+		}
+	}
+	
+	public void imprimirDados(ArrayList<Dados> dados){
+		for (int i = 0; i < dados.size(); i++) {
+			System.out.print("|" + dados.get(i).getValor());			
+		}
+		System.out.print("|\n");
+		System.out.println();
 	}
 }

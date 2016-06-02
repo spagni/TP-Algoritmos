@@ -16,8 +16,16 @@ public class Jugadores {
 		esCpu = false;
 	}
 	
-	public String nombreJugador;
+	private String nombreJugador;
+	public String getNombreJugador(){
+		return this.nombreJugador;
+	}
+	
+	private boolean esCpu;
+	public boolean getEsCpu(){
+		return this.esCpu;
+	}
+	
 	public int totalPuntos;
-	public boolean esCpu;
 	//Definir todos los puntajes
 }
