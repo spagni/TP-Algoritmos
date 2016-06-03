@@ -14,8 +14,22 @@ public class Dados {
 			this.valor = valor;
 		}
 		
+		private boolean usar = true;
+		
+		public boolean getUsar(){
+			return this.usar;
+		}
+
+		public void setUsar(boolean usar){
+			this.usar = usar;
+		}
+		
 		public void tirar(){
 			Random rnd = new Random();
 			this.valor = rnd.nextInt(6) + 1;
+		}
+		
+		public void reset(){
+			this.usar = true;
 		}
 }

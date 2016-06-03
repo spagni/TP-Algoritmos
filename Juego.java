@@ -21,7 +21,7 @@ public class Juego {
 		
 		//Arranca el juego
 		while(!hayGanador && contTurnos <= 11){
-			System.out.println("Turno NÂ°" + contTurnos);
+			System.out.println("Turno N°" + contTurnos);
 			System.out.println();
 			
 			//Recorro todos los jugadores
@@ -111,16 +111,14 @@ public class Juego {
 		//Ciclo para que juegue dentro de los tres turnos, o hasta que no quiera tirar mas
 		while(this.sigueTirando && this.contTiros <= 3){
 			//Tirar dados
+			System.out.println("--> Tiro " + this.contTiros);
 			if(this.contTiros == 1){
-				System.out.println("-->Tiro " + this.contTiros);
-				this.tirarDados(dados, true, true, true, true, true);
+				this.tirarDados(dados);
 				this.imprimirDados(dados);
 				this.contTiros++;
-				
 				//Preguntar si quiere seguir tirando
 			}
 			else{
-				System.out.println("-->Tiro " + this.contTiros);
 				this.contTiros++;
 				//Preguntar si quiere seguir tirando
 			}
@@ -133,31 +131,20 @@ public class Juego {
 		System.out.println("\n-----------------\n");
 	}
 	
-	public void tirarDados(ArrayList<Dados> dados, boolean d1 ,boolean d2, boolean d3, boolean d4, boolean d5){
+	public void tirarDados(ArrayList<Dados> dados){
 		//Chequeo los dados uno por uno y si estan en true los tiro
-		if(d1){
-			dados.get(0).tirar();
-		}
-		if(d2){
-			dados.get(1).tirar();
-		}
-		if(d3){
-			dados.get(2).tirar();
-		}
-		if(d4){
-			dados.get(3).tirar();
-		}
-		if(d5){
-			dados.get(4).tirar();
+		for (Dados dado : dados){
+			if (dado.getUsar()){
+				dado.tirar();
+			}
 		}
 	}
 	
 	public void imprimirDados(ArrayList<Dados> dados){
 		System.out.println(" _   _   _   _   _");
-		for (int i = 0; i < dados.size(); i++) {
-			System.out.print("|" + dados.get(i).getValor() + "| ");			
+		for (Dados dado : dados){
+			System.out.print("|" + dado.getValor() + "| ");
 		}
-		System.out.println("\n Â¯   Â¯   Â¯   Â¯   Â¯");
-		System.out.println();
+		System.out.println("\n ¯   ¯   ¯   ¯   ¯\n");
 	}
 }
