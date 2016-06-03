@@ -153,10 +153,11 @@ public class Juego {
 	}
 	
 	public void imprimirDados(ArrayList<Dados> dados){
+		System.out.println(" _   _   _   _   _");
 		for (int i = 0; i < dados.size(); i++) {
-			System.out.print("|" + dados.get(i).getValor());			
+			System.out.print("|" + dados.get(i).getValor() + "| ");			
 		}
-		System.out.print("|\n");
+		System.out.println("\n ¯   ¯   ¯   ¯   ¯");
 		System.out.println();
 	}
 }
