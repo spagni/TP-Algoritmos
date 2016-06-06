@@ -11,10 +11,9 @@ public class Juego {
 	private boolean hayGanador = false;
 	private int contTiros = 1;
 	private boolean sigueTirando = true;
+	private Scanner sc = new Scanner(System.in);
 	
-	public void jugar(){
-		Scanner sc = new Scanner(System.in);
-		
+	public void jugar(){		
 		//Inicializo y cargo las listas de jugadores y Dados 
 		ArrayList<Jugadores> jugadores = this.ingresoJugadores(sc);
 		ArrayList<Dados> dados = this.cargarDados();
@@ -111,19 +110,42 @@ public class Juego {
 		//Ciclo para que juegue dentro de los tres turnos, o hasta que no quiera tirar mas
 		while(this.sigueTirando && this.contTiros <= 3){
 			//Tirar dados
+			String rta;
 			System.out.println("--> Tiro " + this.contTiros);
 			if(this.contTiros == 1){
 				this.tirarDados(dados);
 				this.imprimirDados(dados);
+				//Validar generala servida
+				//Valido si sigue tirando o no
+				System.out.print("Quiere seguir tirando? (S/N): ");
+				rta = sc.next();
+				sc.reset();
+				if (rta.toLowerCase().equals("n")){
+					this.sigueTirando = false;
+					//Validar puntajes y juegos
+				}
 				this.contTiros++;
-				//Preguntar si quiere seguir tirando
 			}
 			else{
+				this.seleccionarDados(dados);
+				this.tirarDados(dados);
+				this.imprimirDados(dados);
+				//Validar generala servida
+				//Valido si sigue tirando o no
+				if (this.contTiros != 3){
+					System.out.print("Quiere seguir tirando? (S/N): ");
+					rta = sc.next();
+					if (rta.toLowerCase().equals("n")){
+						this.sigueTirando = false;
+						//Validar puntajes y juegos
+					}
+				}
 				this.contTiros++;
-				//Preguntar si quiere seguir tirando
 			}
 		}
 		this.contTiros = 1;//Reinicio el contador de tiros al tiro 1
+		this.sigueTirando = true; //Reinicio el valor de seguir tirando
+		this.resetDados(dados);//Reseteo los dados
 		this.imprimirSeparador();
 	}
 	
@@ -146,5 +168,27 @@ public class Juego {
 			System.out.print("|" + dado.getValor() + "| ");
 		}
 		System.out.println("\n ¯   ¯   ¯   ¯   ¯\n");
+	}
+	
+	public void seleccionarDados(ArrayList<Dados> dados){
+			
+		System.out.println("Ingrese los dados que quiere guardar(0/1/2/3/4) separados por coma. Ingrese 9 para volver a tirar los 5 dados: ");
+		String dadosATirar = sc.next();
+		String[] dadoATirar = dadosATirar.split(",");
+		//Recorro el vector y cambio el valor de dado.usar
+		if (Integer.parseInt(dadoATirar[0]) != 9){
+			for (int i = 0; i < dadoATirar.length; i++) {
+				dados.get(Integer.parseInt(dadoATirar[i])).setUsar(false);
+			}
+		}
+		else{
+			this.resetDados(dados);
+		}
+	}
+	
+	public void resetDados(ArrayList<Dados> dados){
+		for (int i = 0; i < dados.size(); i++) {
+			dados.get(i).setUsar(true);
+		}
 	}
 }
