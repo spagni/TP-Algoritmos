@@ -20,7 +20,7 @@ public class Juego {
 		
 		//Arranca el juego
 		while(!hayGanador && contTurnos <= 11){
-			System.out.println("Turno N°" + contTurnos);
+			System.out.println("Turno Nï¿½" + contTurnos);
 			System.out.println();
 			
 			//Recorro todos los jugadores
@@ -123,6 +123,7 @@ public class Juego {
 				if (rta.toLowerCase().equals("n")){
 					this.sigueTirando = false;
 					//Validar puntajes y juegos
+					jugador.puntajes.validarPuntajes(jugador, dados);
 				}
 				this.contTiros++;
 			}
@@ -138,7 +139,11 @@ public class Juego {
 					if (rta.toLowerCase().equals("n")){
 						this.sigueTirando = false;
 						//Validar puntajes y juegos
+						jugador.puntajes.validarPuntajes(jugador, dados);
 					}
+				}
+				else{
+					jugador.puntajes.validarPuntajes(jugador, dados);
 				}
 				this.contTiros++;
 			}
@@ -167,7 +172,7 @@ public class Juego {
 		for (Dados dado : dados){
 			System.out.print("|" + dado.getValor() + "| ");
 		}
-		System.out.println("\n ¯   ¯   ¯   ¯   ¯\n");
+		System.out.println("\n ï¿½   ï¿½   ï¿½   ï¿½   ï¿½\n");
 	}
 	
 	public void seleccionarDados(ArrayList<Dados> dados){

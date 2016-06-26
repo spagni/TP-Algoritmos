@@ -27,5 +27,6 @@ public class Jugadores {
 	}
 	
 	public int totalPuntos;
-	//Definir todos los puntajes
+	
+	public Puntajes puntajes = new Puntajes();
 }
