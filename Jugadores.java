@@ -26,7 +26,13 @@ public class Jugadores {
 		return this.esCpu;
 	}
 	
-	public int totalPuntos;
+	private int totalPuntos;
+	public int getTotalPuntos(){
+		return this.totalPuntos;
+	}
+	public void setTotalPuntos(int valor){
+		this.totalPuntos += valor;
+	}
 	
 	public Puntajes puntajes = new Puntajes();
 }
