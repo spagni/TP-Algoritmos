@@ -50,12 +50,14 @@ public class Puntajes {
 		//Carga un hashMap con los juegos posibles en true
 		this.listaPuntajes = new HashMap<>();
 		//Generala
-		if(contadorValores.containsValue(5) && !generala){
+		if(contadorValores.containsValue(5)){
 			//Si ya saco generala agrego al mapa la generalaDoble en true
-			if(listaPuntajes.get("generala") == true){
+			if(generala){
 				this.listaPuntajes.put("generalaDoble", true);
 			}
-			this.listaPuntajes.put("generala", true);
+			else{
+				this.listaPuntajes.put("generala", true);
+			}
 		}
 		else{
 			this.listaPuntajes.put("generala", false);

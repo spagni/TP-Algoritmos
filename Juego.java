@@ -21,8 +21,7 @@ public class Juego {
 		
 		//Arranca el juego
 		while(!hayGanador && contTurnos <= 11){
-			System.out.println("Turno N°" + contTurnos);
-			System.out.println();
+			System.out.println("Turno N°" + contTurnos + "\n");
 			
 			//Recorro todos los jugadores
 			for (Jugador jugador : jugadores){
@@ -70,7 +69,7 @@ public class Juego {
 			//crear jugadores
 			jugadores = creoJugadores(sc);
 			//creo cpu
-			Jugador jugadorCpu = new Jugador();
+			JugadorCpu jugadorCpu = new JugadorCpu();
 			jugadores.add(jugadorCpu);
 			//Imprimo array
 			imprimirArray(jugadores);			
@@ -91,7 +90,7 @@ public class Juego {
 		//Creo una lista del tipo Jugadores, que tiene todos los jugadores adentro
 		ArrayList<Jugador> jugadoresList = new ArrayList<Jugador>();
 		for (int i = 0; i < cantJugadores; i++) {
-			Jugador jug = new Jugador(i,sc);
+			JugadorPersona jug = new JugadorPersona(i,sc);
 			jugadoresList.add(jug); 
 		}
 		return jugadoresList;

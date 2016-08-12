@@ -4,21 +4,19 @@ import java.util.Scanner;
 
 public class Jugador {
 	
-	private String nombreJugador;
-	private boolean esCpu;
-	private int totalPuntos;
+	public String nombreJugador;
+	public boolean esCpu;
+	public int totalPuntos;
 	public Puntajes puntajes = new Puntajes();
 	
 	public Jugador(){
 		nombreJugador = "Computadora";
-		esCpu = true;
 	}
 	
 	public Jugador(int nJugador,Scanner sc){
 		//ingresar datos jugador
 		System.out.print("Ingrese el nombre del jugador n°"+ nJugador + ": ");
-		nombreJugador = sc.next();	
-		esCpu = false;
+		nombreJugador = sc.next();
 	}
 	
 	public String getNombreJugador(){
